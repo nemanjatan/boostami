@@ -1,8 +1,5 @@
 <?php
 
-require_once get_template_directory() . '/lib/Desktop_Icon_Walker.php';
-require_once get_template_directory() . '/lib/Mobile_Icon_Walker.php';
-
 function bostami_enqueue_styles() {
 	wp_enqueue_style( 'fontawesome_all', get_template_directory_uri() . '/assets/fontaswesome/css/all.min.css' );
 	wp_enqueue_style( 'fontawesome_min', get_template_directory_uri() . '/assets/fontaswesome/css/fontawesome.min.css' );
