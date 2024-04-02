@@ -1,5 +1,7 @@
 <?php
 
+require get_template_directory() . '/theme-options.php';
+
 function bostami_enqueue_styles() {
 	wp_enqueue_style( 'fontawesome_all', get_template_directory_uri() . '/assets/fontaswesome/css/all.min.css' );
 	wp_enqueue_style( 'fontawesome_min', get_template_directory_uri() . '/assets/fontaswesome/css/fontawesome.min.css' );
@@ -66,79 +68,3 @@ function bostami_custom_logo_setup() {
 }
 
 add_action( 'after_setup_theme', 'bostami_custom_logo_setup' );
-
-function bostami_customize_register( $wp_customize ) {
-	// Add a new section for 'Profile' settings.
-	$wp_customize->add_section( 'bostami_profile_section', array(
-		'title'    => __( 'Profile', 'bostami' ),
-		'priority' => 30,
-	) );
-
-	// Add a setting for the 'Profile Image'.
-	$wp_customize->add_setting( 'bostami_profile_image', array(
-		'default'           => '',
-		'transport'         => 'refresh',
-		'sanitize_callback' => 'esc_url_raw',
-	) );
-
-	// Add a control to upload the profile image.
-	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'bostami_profile_image', array(
-		'label'    => __( 'Profile Image', 'bostami' ),
-		'section'  => 'bostami_profile_section',
-		'settings' => 'bostami_profile_image',
-	) ) );
-
-	// Add a setting for the 'Profile Name'.
-	$wp_customize->add_setting( 'bostami_profile_name', array(
-		'default'           => 'Monalisa Ashley',
-		'transport'         => 'refresh',
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-
-	// Add a control to input the profile name.
-	$wp_customize->add_control( 'bostami_profile_name', array(
-		'label'    => __( 'Profile Name', 'bostami' ),
-		'section'  => 'bostami_profile_section',
-		'settings' => 'bostami_profile_name',
-		'type'     => 'text',
-	) );
-
-	// Add a setting for the 'Job title'.
-	$wp_customize->add_setting( 'bostami_job_title', array(
-		'default'           => 'Ui/Ux Designer',
-		'transport'         => 'refresh',
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-
-	// Add a control to input the job title.
-	$wp_customize->add_control( 'bostami_job_title', array(
-		'label'    => __( 'Job Title', 'bostami' ),
-		'section'  => 'bostami_profile_section',
-		'settings' => 'bostami_job_title',
-		'type'     => 'text',
-	) );
-
-	// Add a new section for 'Social Networks' settings.
-	$wp_customize->add_section( 'bostami_social_section', array(
-		'title'      => __( 'Social Networks', 'bostami' ),
-		'priority'   => 35,
-	));
-
-	$social_networks = array('Facebook', 'Twitter', 'Dribbble', 'LinkedIn');
-	foreach ($social_networks as $network) {
-		$wp_customize->add_setting( strtolower($network), array(
-			'default'           => get_bloginfo('url'),
-			'transport'         => 'refresh',
-			'sanitize_callback' => 'esc_url_raw',
-		));
-
-		$wp_customize->add_control( strtolower($network), array(
-			'label'    => $network,
-			'section'  => 'bostami_social_section',
-			'settings' => strtolower($network),
-			'type'     => 'text',
-		));
-	}
-}
-
-add_action( 'customize_register', 'bostami_customize_register' );

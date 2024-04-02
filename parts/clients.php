@@ -5,31 +5,31 @@
 		<div class="slickOne text-center px-2 pt-8">
 			<div>
 				<img class="overflow-hidden brand-img" src="./images/slider/brand.png"
-				     alt="brand icon" />
+				     alt="brand icon"/>
 			</div>
 			<div>
 				<img class="overflow-hidden brand-img" src="./images/slider/brand1.png"
-				     alt="brand icon" />
+				     alt="brand icon"/>
 			</div>
 			<div>
 				<img class="overflow-hidden brand-img" src="./images/slider/brand2.png"
-				     alt="brand icon" />
+				     alt="brand icon"/>
 			</div>
 			<div>
 				<img class="overflow-hidden brand-img" src="./images/slider/brand3.png"
-				     alt="brand icon" />
+				     alt="brand icon"/>
 			</div>
 			<div>
 				<img class="overflow-hidden brand-img" src="./images/slider/brand4.png"
-				     alt="brand icon" />
+				     alt="brand icon"/>
 			</div>
 			<div>
 				<img class="overflow-hidden brand-img" src="./images/slider/brand1.png"
-				     alt="brand icon" />
+				     alt="brand icon"/>
 			</div>
 			<div>
 				<img class="overflow-hidden brand-img" src="./images/slider/brand1.png"
-				     alt="brand icon" />
+				     alt="brand icon"/>
 			</div>
 		</div>
 		<!-- slider and slider items end -->

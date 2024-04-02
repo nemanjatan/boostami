@@ -3,7 +3,7 @@
 	<nav class="hidden lg:block">
 		<ul class="flex">
 			<?php
-			if (has_nav_menu('primary_menu')) {
+			if ( has_nav_menu( 'primary_menu' ) ) {
 				$locations  = get_nav_menu_locations();
 				$menu_id    = $locations['primary_menu'];
 				$menu_items = wp_get_nav_menu_items( $menu_id );

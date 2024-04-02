@@ -1,8 +1,9 @@
 <!-- mobile menu start -->
 <nav id="navbar" class="hidden lg:hidden">
-	<ul class="block rounded-b-[20px] shadow-md absolute left-0 top-20 z-[22222222222222] w-full bg-white dark:bg-[#1d1d1d]">
+	<ul
+		class="block rounded-b-[20px] shadow-md absolute left-0 top-20 z-[22222222222222] w-full bg-white dark:bg-[#1d1d1d]">
 		<?php
-		if (has_nav_menu('primary_menu')) {
+		if ( has_nav_menu( 'primary_menu' ) ) {
 			$locations  = get_nav_menu_locations();
 			$menu_id    = $locations['primary_menu'];
 			$menu_items = wp_get_nav_menu_items( $menu_id );
@@ -34,8 +35,8 @@
 						}
 					}
 
-					$classes = empty( $menu_item->classes ) ? array() : (array) $menu_item->classes;
-					$is_active = in_array( 'current-menu-item', $classes );
+					$classes           = empty( $menu_item->classes ) ? array() : (array) $menu_item->classes;
+					$is_active         = in_array( 'current-menu-item', $classes );
 					$menu_item_classes = $is_active ? 'mobile-menu-items-active' : 'mobile-menu-items';
 
 					// Output the menu item
