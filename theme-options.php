@@ -105,8 +105,7 @@ function bostami_theme_page() {
 							<button type="button" class="button bostami_upload_button" data-input="bostami_profile_image">Upload
 								Image
 							</button>
-							<img src="<?php echo esc_attr( $profile_image ); ?>" class="bostami_icon_preview"
-							     style="max-width: 100px; max-height: 100px;"/>
+							<img src="<?php echo esc_attr( $profile_image ); ?>" class="bostami_icon_preview" style="max-width: 100px; max-height: 100px;"/>
 						</td>
 					</tr>
 					<tr>
@@ -199,11 +198,11 @@ function bostami_theme_page() {
 						<td>
 							<select id="bostami_clients_page" name="bostami_clients_page">
 								<?php
-								$pages                 = get_pages();
-								$selected_clients_page = get_option( 'bostami_clients_page' );
-								foreach ( $pages as $page ) {
-									$option = '<option value="' . intval( $page->ID ) . '"';
-									$option .= selected( $selected_clients_page, $page->ID, false );
+								$pages = get_pages();
+								$selected_clients_page = get_option('bostami_clients_page');
+								foreach ($pages as $page) {
+									$option = '<option value="' . intval($page->ID) . '"';
+									$option .= selected($selected_clients_page, $page->ID, false);
 									$option .= '>';
 									$option .= $page->post_title;
 									$option .= '</option>';
@@ -218,40 +217,31 @@ function bostami_theme_page() {
 					<?php
 					$clients = get_option( 'bostami_clients' );
 					if ( ! empty( $clients ) ) {
-					foreach ( $clients
-
-					as $index => $item ) {
+						foreach ( $clients as $index => $item ) {
+							?>
+							<div class="bostami_client_item">
+								<p>
+									<label for="bostami_client_image_<?php echo $index; ?>">Client Image:</label>
+									<input type="text" id="bostami_client_image_<?php echo $index; ?>" name="bostami_clients[<?php echo $index; ?>][image]" value="<?php echo esc_attr( $item['image'] ); ?>" class="regular-text"/>
+									<button type="button" class="button bostami_upload_button" data-input="bostami_client_image_<?php echo $index; ?>">Upload Image</button>
+									<img src="<?php echo esc_attr( $item['image'] ); ?>" class="bostami_icon_preview" style="max-width: 100px; max-height: 100px;"/>
+								</p>
+								<p>
+									<label for="bostami_client_url_<?php echo $index; ?>">Client URL:</label>
+									<input type="url" id="bostami_client_url_<?php echo $index; ?>" name="bostami_clients[<?php echo $index; ?>][url]" value="<?php echo esc_attr( $item['url'] ); ?>" class="regular-text"/>
+								</p>
+								<button type="button" class="button bostami_remove_client_button">Remove Client</button>
+							</div>
+							<?php
+						}
+					}
 					?>
-					<p class="bostami_client_item">
-					<p>
-						<label for="bostami_client_image_<?php echo $index; ?>">Client Image:</label>
-						<input type="text" id="bostami_client_image_<?php echo $index; ?>"
-						       name="bostami_clients[<?php echo $index; ?>][image]"
-						       value="<?php echo esc_attr( $item['image'] ); ?>" class="regular-text"/>
-						<button type="button" class="button bostami_upload_button"
-						        data-input="bostami_client_image_<?php echo $index; ?>">Upload Image
-						</button>
-						<img src="<?php echo esc_attr( $item['image'] ); ?>" class="bostami_icon_preview"
-						     style="max-width: 100px; max-height: 100px;"/>
-					</p>
-					<p>
-						<label for="bostami_client_url_<?php echo $index; ?>">Client URL:</label>
-						<input type="url" id="bostami_client_url_<?php echo $index; ?>"
-						       name="bostami_clients[<?php echo $index; ?>][url]" value="<?php echo esc_attr( $item['url'] ); ?>"
-						       class="regular-text"/>
-					</p>
-					<button type="button" class="button bostami_remove_client_button">Remove Client</button>
 				</div>
-				<?php
-				}
-				}
-				?>
+				<button type="button" id="bostami_add_new_client" class="button">Add New Client</button>
 			</div>
-			<button type="button" id="bostami_add_new_client" class="button">Add New Client</button>
-	</div>
 
-	<?php submit_button(); ?>
-	</form>
+			<?php submit_button(); ?>
+		</form>
 	</div>
 	<script type="text/template" id="bostami_what_i_do_template">
 		<div class="bostami_what_i_do_item">
@@ -278,16 +268,12 @@ function bostami_theme_page() {
 		<div class="bostami_client_item">
 			<p>
 				<label for="bostami_client_image_{{index}}">Client Image:</label>
-				<input type="text" id="bostami_client_image_{{index}}" name="bostami_clients[{{index}}][image]" value=""
-				       class="regular-text"/>
-				<button type="button" class="button bostami_upload_button" data-input="bostami_client_image_{{index}}">Upload
-					Image
-				</button>
+				<input type="text" id="bostami_client_image_{{index}}" name="bostami_clients[{{index}}][image]" value="" class="regular-text"/>
+				<button type="button" class="button bostami_upload_button" data-input="bostami_client_image_{{index}}">Upload Image</button>
 			</p>
 			<p>
 				<label for="bostami_client_url_{{index}}">Client URL:</label>
-				<input type="url" id="bostami_client_url_{{index}}" name="bostami_clients[{{index}}][url]" value=""
-				       class="regular-text"/>
+				<input type="url" id="bostami_client_url_{{index}}" name="bostami_clients[{{index}}][url]" value="" class="regular-text"/>
 			</p>
 			<button type="button" class="button bostami_remove_client_button">Remove Client</button>
 		</div>
