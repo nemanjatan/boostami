@@ -51,4 +51,22 @@ jQuery(document).ready(function ($) {
         var tab = $(this).data('tab');
         $('#' + tab).addClass('active');
     });
+
+    // Add new client
+    $('#bostami_add_new_client').click(function () {
+        var container = $('#bostami_clients_container');
+        var newIndex = container.children().length; // Assuming each child is a client item
+
+        // Replace {{index}} in the template with the actual new index
+        var newItemHtml = $('#bostami_client_template').html().replace(/{{index}}/g, newIndex);
+        container.append(newItemHtml);
+    });
+
+    // Remove client
+    $(document).on('click', '.bostami_remove_client_button', function (e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to remove this client?')) {
+            $(this).closest('.bostami_client_item').remove();
+        }
+    });
 });

@@ -11,6 +11,9 @@ function bostami_register_settings() {
 	register_setting( 'bostami_options_group', 'bostami_profile_image', 'esc_url_raw' );
 	register_setting( 'bostami_options_group', 'bostami_profile_name', 'sanitize_text_field' );
 	register_setting( 'bostami_options_group', 'bostami_job_title', 'sanitize_text_field' );
+	register_setting( 'bostami_options_group', 'bostami_clients', 'bostami_sanitize_clients_options' );
+	register_setting( 'bostami_options_group', 'bostami_clients_page', 'absint' );
+
 }
 
 add_action( 'admin_init', 'bostami_register_settings' );
@@ -20,6 +23,24 @@ function bostami_enqueue_media_uploader() {
 }
 
 add_action( 'admin_enqueue_scripts', 'bostami_enqueue_media_uploader' );
+
+function bostami_sanitize_clients_options( $options ) {
+	$sanitized_options = [];
+	if ( is_array( $options ) && ! empty( $options ) ) {
+		foreach ( $options as $item ) {
+			$sanitized_item = [];
+			if ( ! empty( $item['image'] ) ) {
+				$sanitized_item['image'] = esc_url_raw( $item['image'] );
+			}
+			if ( ! empty( $item['url'] ) ) {
+				$sanitized_item['url'] = esc_url_raw( $item['url'] );
+			}
+			$sanitized_options[] = $sanitized_item;
+		}
+	}
+
+	return $sanitized_options;
+}
 
 function bostami_sanitize_options( $options ) {
 	$sanitized_options = [];
@@ -59,12 +80,15 @@ function bostami_theme_page() {
 	$profile_image = get_option( 'bostami_profile_image' );
 	$profile_name  = get_option( 'bostami_profile_name' );
 	$job_title     = get_option( 'bostami_job_title' );
+
+	$profile_image = get_option( 'bostami_profile_image' );
 	?>
 	<div class="wrap">
 		<h1>Theme Options</h1>
 		<h2 class="nav-tab-wrapper">
 			<a href="#profile" class="nav-tab nav-tab-active" data-tab="profile">Profile</a>
 			<a href="#what-i-do" class="nav-tab" data-tab="what-i-do">What I Do</a>
+			<a href="#clients" class="nav-tab" data-tab="clients">Clients</a>
 		</h2>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'bostami_options_group' ); ?>
@@ -81,6 +105,8 @@ function bostami_theme_page() {
 							<button type="button" class="button bostami_upload_button" data-input="bostami_profile_image">Upload
 								Image
 							</button>
+							<img src="<?php echo esc_attr( $profile_image ); ?>" class="bostami_icon_preview"
+							     style="max-width: 100px; max-height: 100px;"/>
 						</td>
 					</tr>
 					<tr>
@@ -163,8 +189,69 @@ function bostami_theme_page() {
 				<button type="button" id="bostami_add_new_item" class="button">Add New Element</button>
 			</div>
 
-			<?php submit_button(); ?>
-		</form>
+			<div id="clients" class="tab-content">
+				<h2>Clients</h2>
+				<table class="form-table">
+					<tr>
+						<th scope="row">
+							<label for="bostami_clients_page">Select a page for Clients:</label>
+						</th>
+						<td>
+							<select id="bostami_clients_page" name="bostami_clients_page">
+								<?php
+								$pages                 = get_pages();
+								$selected_clients_page = get_option( 'bostami_clients_page' );
+								foreach ( $pages as $page ) {
+									$option = '<option value="' . intval( $page->ID ) . '"';
+									$option .= selected( $selected_clients_page, $page->ID, false );
+									$option .= '>';
+									$option .= $page->post_title;
+									$option .= '</option>';
+									echo $option;
+								}
+								?>
+							</select>
+						</td>
+					</tr>
+				</table>
+				<div id="bostami_clients_container">
+					<?php
+					$clients = get_option( 'bostami_clients' );
+					if ( ! empty( $clients ) ) {
+					foreach ( $clients
+
+					as $index => $item ) {
+					?>
+					<p class="bostami_client_item">
+					<p>
+						<label for="bostami_client_image_<?php echo $index; ?>">Client Image:</label>
+						<input type="text" id="bostami_client_image_<?php echo $index; ?>"
+						       name="bostami_clients[<?php echo $index; ?>][image]"
+						       value="<?php echo esc_attr( $item['image'] ); ?>" class="regular-text"/>
+						<button type="button" class="button bostami_upload_button"
+						        data-input="bostami_client_image_<?php echo $index; ?>">Upload Image
+						</button>
+						<img src="<?php echo esc_attr( $item['image'] ); ?>" class="bostami_icon_preview"
+						     style="max-width: 100px; max-height: 100px;"/>
+					</p>
+					<p>
+						<label for="bostami_client_url_<?php echo $index; ?>">Client URL:</label>
+						<input type="url" id="bostami_client_url_<?php echo $index; ?>"
+						       name="bostami_clients[<?php echo $index; ?>][url]" value="<?php echo esc_attr( $item['url'] ); ?>"
+						       class="regular-text"/>
+					</p>
+					<button type="button" class="button bostami_remove_client_button">Remove Client</button>
+				</div>
+				<?php
+				}
+				}
+				?>
+			</div>
+			<button type="button" id="bostami_add_new_client" class="button">Add New Client</button>
+	</div>
+
+	<?php submit_button(); ?>
+	</form>
 	</div>
 	<script type="text/template" id="bostami_what_i_do_template">
 		<div class="bostami_what_i_do_item">
@@ -185,6 +272,24 @@ function bostami_theme_page() {
 				<textarea name="bostami_what_i_do_items[{{index}}][description]"></textarea>
 			</p>
 			<button type="button" class="button bostami_remove_icon_button">Remove Element</button>
+		</div>
+	</script>
+	<script type="text/template" id="bostami_client_template">
+		<div class="bostami_client_item">
+			<p>
+				<label for="bostami_client_image_{{index}}">Client Image:</label>
+				<input type="text" id="bostami_client_image_{{index}}" name="bostami_clients[{{index}}][image]" value=""
+				       class="regular-text"/>
+				<button type="button" class="button bostami_upload_button" data-input="bostami_client_image_{{index}}">Upload
+					Image
+				</button>
+			</p>
+			<p>
+				<label for="bostami_client_url_{{index}}">Client URL:</label>
+				<input type="url" id="bostami_client_url_{{index}}" name="bostami_clients[{{index}}][url]" value=""
+				       class="regular-text"/>
+			</p>
+			<button type="button" class="button bostami_remove_client_button">Remove Client</button>
 		</div>
 	</script>
 	<?php

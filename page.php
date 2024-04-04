@@ -20,17 +20,18 @@ get_template_part( 'parts/profile' );
 		</div>
 
 		<?php
-		$selected_page_id = get_option( 'bostami_selected_page' );
+		$selected_page_id         = get_option( 'bostami_selected_page' );
+		$selected_clients_page_id = get_option( 'bostami_clients_page' );
+
 		if ( $selected_page_id && (int) $selected_page_id === get_the_ID() ) {
 			get_template_part( 'parts/what-i-do' );
 		}
-		?>
 
-		<!-- clients -->
-		<?php //get_template_part( 'parts/clients' ); ?>
-		<!-- clients end -->
+		// Check if the current page is the selected page for clients and display the section
+		if ( $selected_clients_page_id && (int) $selected_clients_page_id === get_the_ID() ) {
+			get_template_part( 'parts/clients' );
+		}
 
-		<?php
 		get_footer();
 		?>
 	</div>
