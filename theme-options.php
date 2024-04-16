@@ -13,10 +13,14 @@ function bostami_register_settings() {
 	register_setting( 'bostami_options_group', 'bostami_job_title', 'sanitize_text_field' );
 	register_setting( 'bostami_options_group', 'bostami_clients', 'bostami_sanitize_clients_options' );
 	register_setting( 'bostami_options_group', 'bostami_clients_page', 'absint' );
-	register_setting('bostami_options_group', 'bostami_phone', 'sanitize_text_field');
-	register_setting('bostami_options_group', 'bostami_email', 'sanitize_email');
-	register_setting('bostami_options_group', 'bostami_location', 'sanitize_text_field');
-	register_setting('bostami_options_group', 'bostami_birthday', 'sanitize_text_field');
+	register_setting( 'bostami_options_group', 'bostami_phone', 'sanitize_text_field' );
+	register_setting( 'bostami_options_group', 'bostami_email', 'sanitize_email' );
+	register_setting( 'bostami_options_group', 'bostami_location', 'sanitize_text_field' );
+	register_setting( 'bostami_options_group', 'bostami_birthday', 'sanitize_text_field' );
+	register_setting( 'bostami_options_group', 'bostami_facebook', 'esc_url_raw' );
+	register_setting( 'bostami_options_group', 'bostami_twitter', 'esc_url_raw' );
+	register_setting( 'bostami_options_group', 'bostami_dribbble', 'esc_url_raw' );
+	register_setting( 'bostami_options_group', 'bostami_linkedin', 'esc_url_raw' );
 }
 
 add_action( 'admin_init', 'bostami_register_settings' );
@@ -92,6 +96,7 @@ function bostami_theme_page() {
 			<a href="#profile" class="nav-tab nav-tab-active" data-tab="profile">Profile</a>
 			<a href="#what-i-do" class="nav-tab" data-tab="what-i-do">What I Do</a>
 			<a href="#clients" class="nav-tab" data-tab="clients">Clients</a>
+			<a href="#socials" class="nav-tab" data-tab="socials">Socials</a>
 		</h2>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'bostami_options_group' ); ?>
@@ -257,25 +262,63 @@ function bostami_theme_page() {
 					<tr>
 						<th scope="row"><label for="bostami_phone">Phone:</label></th>
 						<td>
-							<input type="text" id="bostami_phone" name="bostami_phone" value="<?php echo esc_attr(get_option('bostami_phone')); ?>" class="regular-text">
+							<input type="text" id="bostami_phone" name="bostami_phone"
+							       value="<?php echo esc_attr( get_option( 'bostami_phone' ) ); ?>" class="regular-text">
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="bostami_email">Email:</label></th>
 						<td>
-							<input type="email" id="bostami_email" name="bostami_email" value="<?php echo esc_attr(get_option('bostami_email')); ?>" class="regular-text">
+							<input type="email" id="bostami_email" name="bostami_email"
+							       value="<?php echo esc_attr( get_option( 'bostami_email' ) ); ?>" class="regular-text">
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="bostami_location">Location:</label></th>
 						<td>
-							<input type="text" id="bostami_location" name="bostami_location" value="<?php echo esc_attr(get_option('bostami_location')); ?>" class="regular-text">
+							<input type="text" id="bostami_location" name="bostami_location"
+							       value="<?php echo esc_attr( get_option( 'bostami_location' ) ); ?>" class="regular-text">
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="bostami_birthday">Birthday:</label></th>
 						<td>
-							<input type="text" id="bostami_birthday" name="bostami_birthday" value="<?php echo esc_attr(get_option('bostami_birthday')); ?>" class="regular-text">
+							<input type="text" id="bostami_birthday" name="bostami_birthday"
+							       value="<?php echo esc_attr( get_option( 'bostami_birthday' ) ); ?>" class="regular-text">
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div id="socials" class="tab-content">
+				<h2>Social Media Settings</h2>
+				<table class="form-table">
+					<tr>
+						<th scope="row"><label for="bostami_facebook">Facebook URL:</label></th>
+						<td>
+							<input type="text" id="bostami_facebook" name="bostami_facebook"
+							       value="<?php echo esc_attr( get_option( 'bostami_facebook' ) ); ?>" class="regular-text"/>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="bostami_twitter">Twitter URL:</label></th>
+						<td>
+							<input type="text" id="bostami_twitter" name="bostami_twitter"
+							       value="<?php echo esc_attr( get_option( 'bostami_twitter' ) ); ?>" class="regular-text"/>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="bostami_dribbble">Dribbble URL:</label></th>
+						<td>
+							<input type="text" id="bostami_dribbble" name="bostami_dribbble"
+							       value="<?php echo esc_attr( get_option( 'bostami_dribbble' ) ); ?>" class="regular-text"/>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="bostami_linkedin">LinkedIn URL:</label></th>
+						<td>
+							<input type="text" id="bostami_linkedin" name="bostami_linkedin"
+							       value="<?php echo esc_attr( get_option( 'bostami_linkedin' ) ); ?>" class="regular-text"/>
 						</td>
 					</tr>
 				</table>
