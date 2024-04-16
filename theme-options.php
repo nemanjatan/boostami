@@ -21,6 +21,7 @@ function bostami_register_settings() {
 	register_setting( 'bostami_options_group', 'bostami_twitter', 'esc_url_raw' );
 	register_setting( 'bostami_options_group', 'bostami_dribbble', 'esc_url_raw' );
 	register_setting( 'bostami_options_group', 'bostami_linkedin', 'esc_url_raw' );
+	register_setting('bostami_options_group', 'bostami_cv', 'esc_url_raw');
 }
 
 add_action( 'admin_init', 'bostami_register_settings' );
@@ -94,6 +95,7 @@ function bostami_theme_page() {
 		<h1>Theme Options</h1>
 		<h2 class="nav-tab-wrapper">
 			<a href="#profile" class="nav-tab nav-tab-active" data-tab="profile">Profile</a>
+			<a href="#personal-info" class="nav-tab" data-tab="personal-info">Personal Info</a>
 			<a href="#what-i-do" class="nav-tab" data-tab="what-i-do">What I Do</a>
 			<a href="#clients" class="nav-tab" data-tab="clients">Clients</a>
 			<a href="#socials" class="nav-tab" data-tab="socials">Socials</a>
@@ -256,7 +258,7 @@ function bostami_theme_page() {
 				<button type="button" id="bostami_add_new_client" class="button">Add New Client</button>
 			</div>
 
-			<div id="profile" class="tab-content active">
+			<div id="personal-info" class="tab-content">
 				<table class="form-table">
 					<!-- Existing fields... -->
 					<tr>
@@ -285,6 +287,13 @@ function bostami_theme_page() {
 						<td>
 							<input type="text" id="bostami_birthday" name="bostami_birthday"
 							       value="<?php echo esc_attr( get_option( 'bostami_birthday' ) ); ?>" class="regular-text">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="bostami_cv">CV Upload:</label></th>
+						<td>
+							<input type="text" id="bostami_cv" name="bostami_cv" value="<?php echo esc_attr(get_option('bostami_cv')); ?>" class="regular-text">
+							<button type="button" class="button bostami_upload_button" data-input="bostami_cv">Upload CV</button>
 						</td>
 					</tr>
 				</table>
