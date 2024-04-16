@@ -13,7 +13,10 @@ function bostami_register_settings() {
 	register_setting( 'bostami_options_group', 'bostami_job_title', 'sanitize_text_field' );
 	register_setting( 'bostami_options_group', 'bostami_clients', 'bostami_sanitize_clients_options' );
 	register_setting( 'bostami_options_group', 'bostami_clients_page', 'absint' );
-
+	register_setting('bostami_options_group', 'bostami_phone', 'sanitize_text_field');
+	register_setting('bostami_options_group', 'bostami_email', 'sanitize_email');
+	register_setting('bostami_options_group', 'bostami_location', 'sanitize_text_field');
+	register_setting('bostami_options_group', 'bostami_birthday', 'sanitize_text_field');
 }
 
 add_action( 'admin_init', 'bostami_register_settings' );
@@ -246,6 +249,36 @@ function bostami_theme_page() {
 					?>
 				</div>
 				<button type="button" id="bostami_add_new_client" class="button">Add New Client</button>
+			</div>
+
+			<div id="profile" class="tab-content active">
+				<table class="form-table">
+					<!-- Existing fields... -->
+					<tr>
+						<th scope="row"><label for="bostami_phone">Phone:</label></th>
+						<td>
+							<input type="text" id="bostami_phone" name="bostami_phone" value="<?php echo esc_attr(get_option('bostami_phone')); ?>" class="regular-text">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="bostami_email">Email:</label></th>
+						<td>
+							<input type="email" id="bostami_email" name="bostami_email" value="<?php echo esc_attr(get_option('bostami_email')); ?>" class="regular-text">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="bostami_location">Location:</label></th>
+						<td>
+							<input type="text" id="bostami_location" name="bostami_location" value="<?php echo esc_attr(get_option('bostami_location')); ?>" class="regular-text">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="bostami_birthday">Birthday:</label></th>
+						<td>
+							<input type="text" id="bostami_birthday" name="bostami_birthday" value="<?php echo esc_attr(get_option('bostami_birthday')); ?>" class="regular-text">
+						</td>
+					</tr>
+				</table>
 			</div>
 
 			<?php submit_button(); ?>
