@@ -20,8 +20,9 @@ get_template_part( 'parts/profile' );
 		</div>
 
 		<?php
-		$selected_page_id         = get_option( 'bostami_selected_page' );
-		$selected_clients_page_id = get_option( 'bostami_clients_page' );
+		$selected_page_id             = get_option( 'bostami_selected_page' );
+		$selected_clients_page_id     = get_option( 'bostami_clients_page' );
+		$bostami_resume_selected_page = get_option( 'bostami_resume_selected_page' );
 
 		if ( $selected_page_id && (int) $selected_page_id === get_the_ID() ) {
 			get_template_part( 'parts/what-i-do' );
@@ -30,6 +31,10 @@ get_template_part( 'parts/profile' );
 		// Check if the current page is the selected page for clients and display the section
 		if ( $selected_clients_page_id && (int) $selected_clients_page_id === get_the_ID() ) {
 			get_template_part( 'parts/clients' );
+		}
+
+		if ( $bostami_resume_selected_page && (int) $bostami_resume_selected_page === get_the_ID() ) {
+			get_template_part( 'parts/resume' );
 		}
 
 		get_footer();

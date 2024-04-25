@@ -34,10 +34,27 @@ jQuery(document).ready(function ($) {
         container.append(newItemHtml);
     });
 
+    $('#bostami_add_new_resume_item').click(function () {
+        var container = $('#bostami_resume_container');
+        var newIndex = container.children().length; // Assuming each child is a "What I Do" item
+
+        // Replace {{index}} in the template with the actual new index
+        var newItemHtml = $('#bostami_resume_template').html().replace(/{{index}}/g, newIndex);
+        container.append(newItemHtml);
+    });
+
     $(document).on('click', '.bostami_remove_icon_button', function (e) {
         e.preventDefault();
         if (confirm('Are you sure you want to remove this element?')) {
             $(this).closest('.bostami_what_i_do_item').remove();
+            // $(this).closest('form').submit();
+        }
+    });
+
+    $(document).on('click', '.bostami_resume_remove_icon_button', function (e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to remove this element?')) {
+            $(this).closest('.bostami_resume_item').remove();
             // $(this).closest('form').submit();
         }
     });

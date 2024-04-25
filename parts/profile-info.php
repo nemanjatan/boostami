@@ -23,7 +23,7 @@
 		<!-- Personal Information -->
 		<?php include get_template_directory() . '/parts/personal-info.php'; ?>
 		<!-- Download CV Button -->
-		<a href="<?php echo esc_url(get_option('bostami_cv')); ?>" download>
+		<a href="<?php echo esc_url( get_option( 'bostami_cv' ) ); ?>" download>
 			<button class="dowanload-btn">
 				<img class="mr-3" src="<?php echo get_template_directory_uri(); ?>/images/icons/dowanload.png" alt="icon"/>
 				Download CV

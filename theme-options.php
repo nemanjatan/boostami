@@ -21,7 +21,9 @@ function bostami_register_settings() {
 	register_setting( 'bostami_options_group', 'bostami_twitter', 'esc_url_raw' );
 	register_setting( 'bostami_options_group', 'bostami_dribbble', 'esc_url_raw' );
 	register_setting( 'bostami_options_group', 'bostami_linkedin', 'esc_url_raw' );
-	register_setting('bostami_options_group', 'bostami_cv', 'esc_url_raw');
+	register_setting( 'bostami_options_group', 'bostami_cv', 'esc_url_raw' );
+	register_setting( 'bostami_options_group', 'bostami_resume_items', 'bostami_sanitize_options' );
+	register_setting( 'bostami_options_group', 'bostami_resume_selected_page', 'absint' );
 }
 
 add_action( 'admin_init', 'bostami_register_settings' );
@@ -64,6 +66,12 @@ function bostami_sanitize_options( $options ) {
 			if ( ! empty( $item['icon'] ) ) {
 				$sanitized_item['icon'] = esc_url_raw( $item['icon'] );
 			}
+			if ( ! empty( $item['year'] ) ) {
+				$sanitized_item['year'] = sanitize_text_field( $item['year'] );
+			}
+			if ( ! empty( $item['type'] ) ) {
+				$sanitized_item['type'] = sanitize_text_field( $item['type'] ); // Ensure 'type' is also sanitized
+			}
 			$sanitized_options[] = $sanitized_item;
 		}
 	}
@@ -83,11 +91,13 @@ function bostami_enqueue_theme_options_scripts( $hook ) {
 add_action( 'admin_enqueue_scripts', 'bostami_enqueue_theme_options_scripts' );
 
 function bostami_theme_page() {
-	$options       = get_option( 'bostami_what_i_do_items' );
-	$selected_page = get_option( 'bostami_selected_page' );
-	$profile_image = get_option( 'bostami_profile_image' );
-	$profile_name  = get_option( 'bostami_profile_name' );
-	$job_title     = get_option( 'bostami_job_title' );
+	$options              = get_option( 'bostami_what_i_do_items' );
+	$resume_options       = get_option( 'bostami_resume_items' );
+	$selected_page        = get_option( 'bostami_selected_page' );
+	$resume_selected_page = get_option( 'bostami_resume_selected_page' );
+	$profile_image        = get_option( 'bostami_profile_image' );
+	$profile_name         = get_option( 'bostami_profile_name' );
+	$job_title            = get_option( 'bostami_job_title' );
 
 	$profile_image = get_option( 'bostami_profile_image' );
 	?>
@@ -99,6 +109,7 @@ function bostami_theme_page() {
 			<a href="#what-i-do" class="nav-tab" data-tab="what-i-do">What I Do</a>
 			<a href="#clients" class="nav-tab" data-tab="clients">Clients</a>
 			<a href="#socials" class="nav-tab" data-tab="socials">Socials</a>
+			<a href="#resume" class="nav-tab" data-tab="resume">Resume</a>
 		</h2>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'bostami_options_group' ); ?>
@@ -292,7 +303,8 @@ function bostami_theme_page() {
 					<tr>
 						<th scope="row"><label for="bostami_cv">CV Upload:</label></th>
 						<td>
-							<input type="text" id="bostami_cv" name="bostami_cv" value="<?php echo esc_attr(get_option('bostami_cv')); ?>" class="regular-text">
+							<input type="text" id="bostami_cv" name="bostami_cv"
+							       value="<?php echo esc_attr( get_option( 'bostami_cv' ) ); ?>" class="regular-text">
 							<button type="button" class="button bostami_upload_button" data-input="bostami_cv">Upload CV</button>
 						</td>
 					</tr>
@@ -331,6 +343,75 @@ function bostami_theme_page() {
 						</td>
 					</tr>
 				</table>
+			</div>
+
+			<div id="resume" class="tab-content">
+				<h2>Display Settings</h2>
+				<table class="form-table">
+					<tr>
+						<th scope="row">
+							<label for="bostami_resume_selected_page">On which page you want this section to be shown:</label>
+						</th>
+						<td>
+							<select id="bostami_resume_selected_page" name="bostami_resume_selected_page">
+								<?php
+								// Get list of pages
+								$pages = get_pages();
+								foreach ( $pages as $page ) {
+									$option = '<option value="' . intval( $page->ID ) . '"';
+									$option .= selected( $resume_selected_page, $page->ID, false );
+									$option .= '>';
+									$option .= $page->post_title;
+									$option .= '</option>';
+									echo $option;
+								}
+								?>
+							</select>
+						</td>
+					</tr>
+				</table>
+
+				<h2>Resume</h2>
+				<div id="bostami_resume_container">
+					<?php
+					if ( ! empty( $resume_options ) ) {
+						foreach ( $resume_options as $index => $item ) {
+							?>
+							<div class="bostami_resume_item">
+								<p>
+									<label>Type:</label>
+									<select name="bostami_resume_items[<?php echo $index; ?>][type]">
+										<option value="education" <?php echo( $item['type'] == 'education' ? 'selected' : '' ); ?>>
+											Education
+										</option>
+										<option value="experience" <?php echo( $item['type'] == 'experience' ? 'selected' : '' ); ?>>
+											Experience
+										</option>
+									</select>
+								</p>
+								<p>
+									<label>Year:</label>
+									<input type="text" name="bostami_resume_items[<?php echo $index; ?>][year]"
+									       value="<?php echo esc_attr( $item['year'] ); ?>"/>
+								</p>
+								<p>
+									<label>Title:</label>
+									<input type="text" name="bostami_resume_items[<?php echo $index; ?>][title]"
+									       value="<?php echo esc_attr( $item['title'] ); ?>"/>
+								</p>
+								<p>
+									<label>Description:</label>
+									<textarea
+										name="bostami_resume_items[<?php echo $index; ?>][description]"><?php echo esc_textarea( $item['description'] ); ?></textarea>
+								</p>
+								<button type="button" class="button bostami_resume_remove_icon_button">Remove Element</button>
+							</div>
+							<?php
+						}
+					}
+					?>
+				</div>
+				<button type="button" id="bostami_add_new_resume_item" class="button">Add New Element</button>
 			</div>
 
 			<?php submit_button(); ?>
@@ -375,6 +456,24 @@ function bostami_theme_page() {
 			<button type="button" class="button bostami_remove_client_button">Remove Client</button>
 		</div>
 	</script>
+	<script type="text/template" id="bostami_resume_template">
+		<div class="bostami_resume_item">
+			<p>
+				<label>Year:</label>
+				<input type="text" name="bostami_resume_items[{{index}}][year]" value=""/>
+			</p>
+			<p>
+				<label>Title:</label>
+				<input type="text" name="bostami_resume_items[{{index}}][title]" value=""/>
+			</p>
+			<p>
+				<label>Description:</label>
+				<textarea name="bostami_resume_items[{{index}}][description]"></textarea>
+			</p>
+			<button type="button" class="button bostami_resume_remove_icon_button">Remove Element</button>
+		</div>
+	</script>
+
 	<?php
 }
 
