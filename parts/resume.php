@@ -13,8 +13,8 @@ if ( ! empty( $resume_items ) ) :
 	} );
 	?>
 	<div class="container sm:px-5 md:px-10 lg:px-14">
-		<div class="py-12 px-4 md:px-0">
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-6 mt-[30px]">
+		<div class="px-4 md:px-0">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-6">
 				<!-- education start -->
 				<div>
 					<div class="flex items-center space-x-2 mb-4">

@@ -6,7 +6,7 @@ $options = get_option( 'bostami_what_i_do_items' );
 if ( ! empty( $options ) ) :
 	?>
 	<!-- what i do section start -->
-	<div class="pb-12 px-2 sm:px-5 md:px-10 lg:px-14">
+	<div class="pb-12 px-2 sm:px-5 md:px-10 lg:px-14 pt-12">
 		<h3 class="text-[35px] dark:text-white font-bold font-robotoSlab pb-5"> What I do! </h3>
 		<div class="grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-2">
 			<?php foreach ( $options as $item ):

@@ -3,7 +3,7 @@ get_template_part( 'parts/profile' );
 ?>
 <div class="page">
 	<div class="lg:rounded-2xl bg-white dark:bg-[#111111]">
-		<div class="pt-12 md:py-12 px-2 sm:px-5 md:px-10 lg:px-14">
+		<div class="pt-12 px-2 sm:px-5 md:px-10 lg:px-14">
 			<!-- about page title -->
 			<h2 class="after-effect after:left-52"><?php the_title(); ?></h2>
 			<?php get_template_part( 'parts/mobile-profile' ); ?>

@@ -371,7 +371,6 @@ function bostami_theme_page() {
 					</tr>
 				</table>
 
-				<h2>Resume</h2>
 				<div id="bostami_resume_container">
 					<?php
 					if ( ! empty( $resume_options ) ) {
@@ -458,6 +457,17 @@ function bostami_theme_page() {
 	</script>
 	<script type="text/template" id="bostami_resume_template">
 		<div class="bostami_resume_item">
+			<p>
+				<label>Type:</label>
+				<select name="bostami_resume_items[{{index}}][type]">
+					<option value="education" selected>
+						Education
+					</option>
+					<option value="experience">
+						Experience
+					</option>
+				</select>
+			</p>
 			<p>
 				<label>Year:</label>
 				<input type="text" name="bostami_resume_items[{{index}}][year]" value=""/>
