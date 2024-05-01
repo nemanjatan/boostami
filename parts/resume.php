@@ -1,6 +1,10 @@
 <?php
 // Retrieve the resume items from the theme options
-$resume_items       = get_option( 'bostami_resume_items' );
+$resume_items   = get_option( 'bostami_resume_items' );
+$working_skills = get_option( 'bostami_resume_skills_items' );
+
+// Define colors for skills
+$colors             = [ '#FF6464', '#9272d4', '#5185d4', '#ca56f2' ];
 
 // Check if there are any items to display
 if ( ! empty( $resume_items ) ) :
@@ -48,6 +52,28 @@ if ( ! empty( $resume_items ) ) :
 					<?php endforeach; ?>
 				</div>
 				<!-- experience end -->
+
+				<!-- working skills start -->
+				<?php if ( ! empty( $working_skills ) ): ?>
+					<div class="col-span-1">
+						<h4 class="text-5xl dark:text-white font-medium mb-6"> Working Skills </h4>
+						<?php foreach ( $working_skills as $index => $skill ): ?>
+							<div class="mb-5">
+								<div class="flex justify-between mb-1">
+									<span
+										class="font-semibold text-[#526377] dark:text-[#A6A6A6]"><?php echo esc_html( $skill['title'] ); ?></span>
+									<span
+										class="font-semibold text-[#526377] dark:text-[#A6A6A6]"><?php echo esc_html( $skill['percentage'] ); ?>%</span>
+								</div>
+								<div class="w-full bg-[#edf2f2] rounded-full h-1 dark:bg-[#1c1c1c]">
+									<div class="bg-[<?php echo $colors[ $index % count( $colors ) ]; ?>] h-1 rounded-full"
+									     style="width: <?php echo intval( $skill['percentage'] ); ?>%"></div>
+								</div>
+							</div>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+				<!-- working skills end -->
 			</div>
 		</div>
 	</div>

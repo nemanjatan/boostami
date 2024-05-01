@@ -43,6 +43,15 @@ jQuery(document).ready(function ($) {
         container.append(newItemHtml);
     });
 
+    $('#bostami_add_new_resume_skills_item').click(function () {
+        var container = $('#bostami_resume_skills_container');
+        var newIndex = container.children().length;
+
+        // Replace {{index}} in the template with the actual new index
+        var newItemHtml = $('#bostami_resume_skills_template').html().replace(/{{index}}/g, newIndex);
+        container.append(newItemHtml);
+    });
+
     $(document).on('click', '.bostami_remove_icon_button', function (e) {
         e.preventDefault();
         if (confirm('Are you sure you want to remove this element?')) {
@@ -55,6 +64,14 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         if (confirm('Are you sure you want to remove this element?')) {
             $(this).closest('.bostami_resume_item').remove();
+            // $(this).closest('form').submit();
+        }
+    });
+
+    $(document).on('click', '.bostami_resume_skills_remove_icon_button', function (e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to remove this element?')) {
+            $(this).closest('.bostami_resume_skills_item').remove();
             // $(this).closest('form').submit();
         }
     });
@@ -85,5 +102,13 @@ jQuery(document).ready(function ($) {
         if (confirm('Are you sure you want to remove this client?')) {
             $(this).closest('.bostami_client_item').remove();
         }
+    });
+
+    $('.resume-tab-link').click(function (e) {
+        e.preventDefault();
+        $('.resume-tab-link').removeClass('active');
+        $(this).addClass('active');
+        $('.resume-tab-content').removeClass('active');
+        $('#' + $(this).data('tab')).addClass('active');
     });
 });

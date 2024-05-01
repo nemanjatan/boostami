@@ -31,7 +31,8 @@
 
 .wrap .bostami_what_i_do_item,
 .wrap .bostami_client_item,
-.wrap .bostami_resume_item {
+.wrap .bostami_resume_item,
+.wrap .bostami_resume_skills_item {
     background-color: #f9f9f9;
     padding: 20px;
     margin-bottom: 20px;
@@ -41,7 +42,8 @@
 
 .wrap .bostami_what_i_do_item p,
 .wrap .bostami_client_item p,
-.wrap .bostami_resume_item p {
+.wrap .bostami_resume_item p,
+.wrap .bostami_resume_skills_item p {
     margin: 10px 0;
     display: flex;
     align-items: center; /* Align items vertically */
@@ -49,7 +51,8 @@
 
 .wrap .bostami_what_i_do_item p label,
 .wrap .bostami_client_item p label,
-.wrap .bostami_resume_item p label {
+.wrap .bostami_resume_item p label,
+.wrap .bostami_resume_skills_item p label {
     width: 20%; /* Adjust label width as needed */
     min-width: 100px; /* Ensures label has enough space */
     margin-right: 20px; /* Space between label and input */
@@ -60,7 +63,8 @@
 .wrap .bostami_client_item p input,
 .wrap .bostami_client_item p textarea,
 .wrap .bostami_resume_item p input,
-.wrap .bostami_resume_item p textarea {
+.wrap .bostami_resume_item p textarea,
+.wrap .bostami_resume_skills_item p input {
     flex-grow: 1; /* Allows input/textarea to take up remaining space */
 }
 
@@ -86,4 +90,29 @@
 
 #bostami_add_new_item:hover {
     background-color: #006799;
+}
+
+.resume-tabs {
+    margin-bottom: 20px;
+}
+
+.resume-tab-link {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 5px 10px;
+    background: #f1f1f1;
+    color: #333;
+    text-decoration: none;
+}
+
+.resume-tab-link.active, .resume-tab-link:hover {
+    background: #ccc;
+}
+
+.resume-tab-content {
+    display: none;
+}
+
+.resume-tab-content.active {
+    display: block;
 }
