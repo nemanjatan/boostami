@@ -13,6 +13,7 @@ function bostami_register_settings() {
 	register_setting( 'bostami_options_group', 'bostami_job_title', 'sanitize_text_field' );
 	register_setting( 'bostami_options_group', 'bostami_clients', 'bostami_sanitize_clients_options' );
 	register_setting( 'bostami_options_group', 'bostami_clients_page', 'absint' );
+	register_setting( 'bostami_options_group', 'bostami_portfolio_page', 'absint' );
 	register_setting( 'bostami_options_group', 'bostami_phone', 'sanitize_text_field' );
 	register_setting( 'bostami_options_group', 'bostami_email', 'sanitize_email' );
 	register_setting( 'bostami_options_group', 'bostami_location', 'sanitize_text_field' );
@@ -26,6 +27,7 @@ function bostami_register_settings() {
 	register_setting( 'bostami_options_group', 'bostami_resume_skills_items', 'bostami_sanitize_resume_skills_options' );
 	register_setting( 'bostami_options_group', 'bostami_resume_knowledge_items', 'bostami_sanitize_resume_knowledge_options' );
 	register_setting( 'bostami_options_group', 'bostami_resume_selected_page', 'absint' );
+	register_setting( 'bostami_options_group', 'bostami_portfolio', 'bostami_sanitize_portfolio_options' );
 }
 
 add_action( 'admin_init', 'bostami_register_settings' );
@@ -46,6 +48,30 @@ function bostami_sanitize_clients_options( $options ) {
 			}
 			if ( ! empty( $item['url'] ) ) {
 				$sanitized_item['url'] = esc_url_raw( $item['url'] );
+			}
+			$sanitized_options[] = $sanitized_item;
+		}
+	}
+
+	return $sanitized_options;
+}
+
+function bostami_sanitize_portfolio_options( $options ) {
+	$sanitized_options = [];
+	if ( is_array( $options ) && ! empty( $options ) ) {
+		foreach ( $options as $item ) {
+			$sanitized_item = [];
+			if ( ! empty( $item['image'] ) ) {
+				$sanitized_item['image'] = esc_url_raw( $item['image'] );
+			}
+			if ( ! empty( $item['url'] ) ) {
+				$sanitized_item['url'] = esc_url_raw( $item['url'] );
+			}
+			if ( ! empty( $item['title'] ) ) {
+				$sanitized_item['title'] = sanitize_text_field( $item['title'] );
+			}
+			if ( ! empty( $item['category'] ) ) {
+				$sanitized_item['category'] = sanitize_text_field( $item['category'] );
 			}
 			$sanitized_options[] = $sanitized_item;
 		}
@@ -143,6 +169,7 @@ function bostami_theme_page() {
 			<a href="#clients" class="nav-tab" data-tab="clients">Clients</a>
 			<a href="#socials" class="nav-tab" data-tab="socials">Socials</a>
 			<a href="#resume" class="nav-tab" data-tab="resume">Resume</a>
+			<a href="#portfolio" class="nav-tab" data-tab="portfolio">Portfolio</a>
 		</h2>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'bostami_options_group' ); ?>
@@ -477,7 +504,6 @@ function bostami_theme_page() {
 					</div>
 					<button type="button" id="bostami_add_new_resume_skills_item" class="button">Add New Element</button>
 				</div>
-
 				<div class="resume-tab-content" id="resume-knowledge">
 					<div id="bostami_resume_knowledge_container">
 						<?php
@@ -500,6 +526,79 @@ function bostami_theme_page() {
 					</div>
 					<button type="button" id="bostami_add_new_resume_knowledge_item" class="button">Add New Element</button>
 				</div>
+			</div>
+
+			<div id="portfolio" class="tab-content">
+				<h2>Portfolio</h2>
+				<table class="form-table">
+					<tr>
+						<th scope="row">
+							<label for="bostami_portfolio_page">Select a page for Portfolio:</label>
+						</th>
+						<td>
+							<select id="bostami_portfolio_page" name="bostami_portfolio_page">
+								<?php
+								$pages                   = get_pages();
+								$selected_portfolio_page = get_option( 'bostami_portfolio_page' );
+								foreach ( $pages as $page ) {
+									$option = '<option value="' . intval( $page->ID ) . '"';
+									$option .= selected( $selected_portfolio_page, $page->ID, false );
+									$option .= '>';
+									$option .= $page->post_title;
+									$option .= '</option>';
+									echo $option;
+								}
+								?>
+							</select>
+						</td>
+					</tr>
+				</table>
+				<div id="bostami_portfolio_container">
+					<?php
+					$portfolio = get_option( 'bostami_portfolio' );
+					if ( ! empty( $portfolio ) ) {
+						foreach ( $portfolio as $index => $item ) {
+							?>
+							<div class="bostami_portfolio_item">
+								<p>
+									<label for="bostami_portfolio_image_<?php echo $index; ?>">Image:</label>
+									<input type="text" id="bostami_portfolio_image_<?php echo $index; ?>"
+									       name="bostami_portfolio[<?php echo $index; ?>][image]"
+									       value="<?php echo esc_attr( $item['image'] ); ?>" class="regular-text"/>
+									<button type="button" class="button bostami_upload_button"
+									        data-input="bostami_portfolio_image_<?php echo $index; ?>">Upload Image
+									</button>
+									<img src="<?php echo esc_attr( $item['image'] ); ?>" class="bostami_icon_preview"
+									     style="max-width: 100px; max-height: 100px;"/>
+								</p>
+								<p>
+									<label for="bostami_portfolio_url_<?php echo $index; ?>">Website URL:</label>
+									<input type="url" id="bostami_portfolio_url_<?php echo $index; ?>"
+									       name="bostami_portfolio[<?php echo $index; ?>][url]"
+									       value="<?php echo esc_attr( $item['url'] ); ?>" class="regular-text"/>
+								</p>
+								<p>
+									<label for="bostami_portfolio_title_<?php echo $index; ?>">Title:</label>
+									<input type="text"
+									       id="bostami_portfolio_title_<?php echo $index; ?>"
+									       name="bostami_portfolio[<?php echo $index; ?>][title]"
+									       value="<?php echo esc_attr( $item['title'] ); ?>"/>
+								</p>
+								<p>
+									<label for="bostami_portfolio_category_<?php echo $index; ?>">Category:</label>
+									<input type="text"
+									       id="bostami_portfolio_category_<?php echo $index; ?>"
+									       name="bostami_portfolio[<?php echo $index; ?>][category]"
+									       value="<?php echo esc_attr( $item['category'] ); ?>"/>
+								</p>
+								<button type="button" class="button bostami_remove_portfolio_button">Remove Portfolio</button>
+							</div>
+							<?php
+						}
+					}
+					?>
+				</div>
+				<button type="button" id="bostami_add_new_portfolio" class="button">Add New Portfolio</button>
 			</div>
 
 			<?php submit_button(); ?>
@@ -592,6 +691,38 @@ function bostami_theme_page() {
 				<input type="text" name="bostami_resume_knowledge_items[{{index}}][title]" value=""/>
 			</p>
 			<button type="button" class="button bostami_resume_knowledge_remove_icon_button">Remove Element</button>
+		</div>
+	</script>
+	<script type="text/template" id="bostami_portfolio_template">
+		<div class="bostami_portfolio_item">
+			<p>
+				<label for="bostami_portfolio_image_{{index}}">Image:</label>
+				<input type="text" id="bostami_portfolio_image_{{index}}" name="bostami_portfolio[{{index}}][image]" value=""
+				       class="regular-text"/>
+				<button type="button" class="button bostami_upload_button" data-input="bostami_portfolio_image_{{index}}">Upload
+					Image
+				</button>
+			</p>
+			<p>
+				<label for="bostami_portfolio_url_{{index}}">Website URL:</label>
+				<input type="url" id="bostami_portfolio_url_{{index}}" name="bostami_portfolio[{{index}}][url]" value=""
+				       class="regular-text"/>
+			</p>
+			<p>
+				<label for="bostami_portfolio_title_{{index}}">Title:</label>
+				<input type="text"
+				       id="bostami_portfolio_title_{{index}}"
+				       name="bostami_portfolio[{{index}}][title]"
+				       value=""/>
+			</p>
+			<p>
+				<label for="bostami_portfolio_category_{{index}}">Category:</label>
+				<input type="text"
+				       id="bostami_portfolio_category_{{index}}"
+				       name="bostami_portfolio[{{index}}][category]"
+				       value=""/>
+			</p>
+			<button type="button" class="button bostami_remove_portfolio_button">Remove Portfolio</button>
 		</div>
 	</script>
 

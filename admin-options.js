@@ -113,11 +113,27 @@ jQuery(document).ready(function ($) {
         container.append(newItemHtml);
     });
 
+    $('#bostami_add_new_portfolio').click(function () {
+        var container = $('#bostami_portfolio_container');
+        var newIndex = container.children().length; // Assuming each child is a client item
+
+        // Replace {{index}} in the template with the actual new index
+        var newItemHtml = $('#bostami_portfolio_template').html().replace(/{{index}}/g, newIndex);
+        container.append(newItemHtml);
+    });
+
     // Remove client
     $(document).on('click', '.bostami_remove_client_button', function (e) {
         e.preventDefault();
         if (confirm('Are you sure you want to remove this client?')) {
             $(this).closest('.bostami_client_item').remove();
+        }
+    });
+
+    $(document).on('click', '.bostami_remove_portfolio_button', function (e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to remove this client?')) {
+            $(this).closest('.bostami_portfolio_item').remove();
         }
     });
 

@@ -33,7 +33,8 @@
 .wrap .bostami_client_item,
 .wrap .bostami_resume_item,
 .wrap .bostami_resume_skills_item,
-.wrap .bostami_resume_knowledge_item {
+.wrap .bostami_resume_knowledge_item,
+.wrap .bostami_portfolio_item {
     background-color: #f9f9f9;
     padding: 20px;
     margin-bottom: 20px;
@@ -45,7 +46,8 @@
 .wrap .bostami_client_item p,
 .wrap .bostami_resume_item p,
 .wrap .bostami_resume_skills_item p,
-.wrap .bostami_resume_knowledge_item p {
+.wrap .bostami_resume_knowledge_item p,
+.wrap .bostami_portfolio_item p {
     margin: 10px 0;
     display: flex;
     align-items: center; /* Align items vertically */
@@ -55,7 +57,8 @@
 .wrap .bostami_client_item p label,
 .wrap .bostami_resume_item p label,
 .wrap .bostami_resume_skills_item p label,
-.wrap .bostami_resume_knowledge_item p label {
+.wrap .bostami_resume_knowledge_item p label,
+.wrap .bostami_portfolio_item p label {
     width: 20%; /* Adjust label width as needed */
     min-width: 100px; /* Ensures label has enough space */
     margin-right: 20px; /* Space between label and input */
@@ -68,7 +71,8 @@
 .wrap .bostami_resume_item p input,
 .wrap .bostami_resume_item p textarea,
 .wrap .bostami_resume_skills_item p input,
-.wrap .bostami_resume_knowledge_item p input {
+.wrap .bostami_resume_knowledge_item p input,
+.wrap .bostami_portfolio_item p input {
     flex-grow: 1; /* Allows input/textarea to take up remaining space */
 }
 
