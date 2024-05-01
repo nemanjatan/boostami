@@ -24,6 +24,7 @@ function bostami_register_settings() {
 	register_setting( 'bostami_options_group', 'bostami_cv', 'esc_url_raw' );
 	register_setting( 'bostami_options_group', 'bostami_resume_items', 'bostami_sanitize_options' );
 	register_setting( 'bostami_options_group', 'bostami_resume_skills_items', 'bostami_sanitize_resume_skills_options' );
+	register_setting( 'bostami_options_group', 'bostami_resume_knowledge_items', 'bostami_sanitize_resume_knowledge_options' );
 	register_setting( 'bostami_options_group', 'bostami_resume_selected_page', 'absint' );
 }
 
@@ -60,6 +61,20 @@ function bostami_sanitize_resume_skills_options( $options ) {
 			$sanitized_option    = [
 				'title'      => sanitize_text_field( $option['title'] ),
 				'percentage' => max( 0, min( 100, intval( $option['percentage'] ) ) )
+			];
+			$sanitized_options[] = $sanitized_option;
+		}
+	}
+
+	return $sanitized_options;
+}
+
+function bostami_sanitize_resume_knowledge_options( $options ) {
+	$sanitized_options = [];
+	if ( is_array( $options ) ) {
+		foreach ( $options as $option ) {
+			$sanitized_option    = [
+				'title' => sanitize_text_field( $option['title'] ),
 			];
 			$sanitized_options[] = $sanitized_option;
 		}
@@ -107,14 +122,15 @@ function bostami_enqueue_theme_options_scripts( $hook ) {
 add_action( 'admin_enqueue_scripts', 'bostami_enqueue_theme_options_scripts' );
 
 function bostami_theme_page() {
-	$options               = get_option( 'bostami_what_i_do_items' );
-	$resume_options        = get_option( 'bostami_resume_items' );
-	$resume_skills_options = get_option( 'bostami_resume_skills_items' );
-	$selected_page         = get_option( 'bostami_selected_page' );
-	$resume_selected_page  = get_option( 'bostami_resume_selected_page' );
-	$profile_image         = get_option( 'bostami_profile_image' );
-	$profile_name          = get_option( 'bostami_profile_name' );
-	$job_title             = get_option( 'bostami_job_title' );
+	$options                  = get_option( 'bostami_what_i_do_items' );
+	$resume_options           = get_option( 'bostami_resume_items' );
+	$resume_skills_options    = get_option( 'bostami_resume_skills_items' );
+	$resume_knowledge_options = get_option( 'bostami_resume_knowledge_items' );
+	$selected_page            = get_option( 'bostami_selected_page' );
+	$resume_selected_page     = get_option( 'bostami_resume_selected_page' );
+	$profile_image            = get_option( 'bostami_profile_image' );
+	$profile_name             = get_option( 'bostami_profile_name' );
+	$job_title                = get_option( 'bostami_job_title' );
 
 	$profile_image = get_option( 'bostami_profile_image' );
 	?>
@@ -366,7 +382,7 @@ function bostami_theme_page() {
 				<div class="resume-tabs">
 					<a href="#" class="resume-tab-link active" data-tab="resume-education-experience">Education & Experience</a>
 					<a href="#" class="resume-tab-link" data-tab="resume-skills">Working Skills</a>
-					<a href="#" class="resume-tab-link" data-tab="resume-knowledges">Knowledges</a>
+					<a href="#" class="resume-tab-link" data-tab="resume-knowledge">knowledge</a>
 				</div>
 				<div class="resume-tab-content active" id="resume-education-experience">
 					<h2>Display Settings</h2>
@@ -462,8 +478,27 @@ function bostami_theme_page() {
 					<button type="button" id="bostami_add_new_resume_skills_item" class="button">Add New Element</button>
 				</div>
 
-				<div class="resume-tab-content" id="resume-knowledges">
-					<!-- Knowledges input fields here -->
+				<div class="resume-tab-content" id="resume-knowledge">
+					<div id="bostami_resume_knowledge_container">
+						<?php
+						if ( ! empty( $resume_knowledge_options ) ) {
+							foreach ( $resume_knowledge_options as $index => $item ) {
+								?>
+								<div class="bostami_resume_knowledge_item">
+									<p>
+										<label>Knowledge title:</label>
+										<input type="text" name="bostami_resume_knowledge_items[<?php echo $index; ?>][title]"
+										       value="<?php echo esc_attr( $item['title'] ); ?>"/>
+									</p>
+									<button type="button" class="button bostami_resume_knowledge_remove_icon_button">Remove Element
+									</button>
+								</div>
+								<?php
+							}
+						}
+						?>
+					</div>
+					<button type="button" id="bostami_add_new_resume_knowledge_item" class="button">Add New Element</button>
 				</div>
 			</div>
 
@@ -548,6 +583,15 @@ function bostami_theme_page() {
 				<input type="number" name="bostami_resume_skills_items[{{index}}][percentage]" value="" min="0" max="100"/>
 			</p>
 			<button type="button" class="button bostami_resume_skills_remove_icon_button">Remove Element</button>
+		</div>
+	</script>
+	<script type="text/template" id="bostami_resume_knowledge_template">
+		<div class="bostami_resume_knowledge_item">
+			<p>
+				<label>Knowledge title:</label>
+				<input type="text" name="bostami_resume_knowledge_items[{{index}}][title]" value=""/>
+			</p>
+			<button type="button" class="button bostami_resume_knowledge_remove_icon_button">Remove Element</button>
 		</div>
 	</script>
 

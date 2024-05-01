@@ -123,7 +123,7 @@ get_template_part( 'parts/profile' );
 				</div>
 
 				<div class="col-span-1">
-					<h4 class="text-5xl dark:text-white font-medium mb-8"> Knowledges </h4>
+					<h4 class="text-5xl dark:text-white font-medium mb-8"> knowledge </h4>
 					<div class="flex gap-y-5 gap-x-2.5 flex-wrap">
 						<button class="resume-btn">Digital Design</button>
 						<button class="resume-btn">Marketing</button>
