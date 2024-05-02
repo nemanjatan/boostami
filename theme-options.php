@@ -28,6 +28,7 @@ function bostami_register_settings() {
 	register_setting( 'bostami_options_group', 'bostami_resume_knowledge_items', 'bostami_sanitize_resume_knowledge_options' );
 	register_setting( 'bostami_options_group', 'bostami_resume_selected_page', 'absint' );
 	register_setting( 'bostami_options_group', 'bostami_portfolio', 'bostami_sanitize_portfolio_options' );
+	register_setting( 'bostami_options_group', 'bostami_blogs_selected_page', 'absint' );
 }
 
 add_action( 'admin_init', 'bostami_register_settings' );
@@ -154,6 +155,7 @@ function bostami_theme_page() {
 	$resume_knowledge_options = get_option( 'bostami_resume_knowledge_items' );
 	$selected_page            = get_option( 'bostami_selected_page' );
 	$resume_selected_page     = get_option( 'bostami_resume_selected_page' );
+	$blogs_selected_page      = get_option( 'bostami_blogs_selected_page' );
 	$profile_image            = get_option( 'bostami_profile_image' );
 	$profile_name             = get_option( 'bostami_profile_name' );
 	$job_title                = get_option( 'bostami_job_title' );
@@ -170,6 +172,7 @@ function bostami_theme_page() {
 			<a href="#socials" class="nav-tab" data-tab="socials">Socials</a>
 			<a href="#resume" class="nav-tab" data-tab="resume">Resume</a>
 			<a href="#portfolio" class="nav-tab" data-tab="portfolio">Portfolio</a>
+			<a href="#blogs" class="nav-tab" data-tab="blogs">Blogs</a>
 		</h2>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'bostami_options_group' ); ?>
@@ -599,6 +602,33 @@ function bostami_theme_page() {
 					?>
 				</div>
 				<button type="button" id="bostami_add_new_portfolio" class="button">Add New Portfolio</button>
+			</div>
+
+			<div id="blogs" class="tab-content">
+				<h2>Blogs</h2>
+				<table class="form-table">
+					<tr>
+						<th scope="row">
+							<label for="bostami_blogs_selected_page">Select a page for Clients:</label>
+						</th>
+						<td>
+							<select id="bostami_blogs_selected_page" name="bostami_blogs_selected_page">
+								<?php
+								$pages               = get_pages();
+								$selected_blogs_page = get_option( 'bostami_blogs_selected_page' );
+								foreach ( $pages as $page ) {
+									$option = '<option value="' . intval( $page->ID ) . '"';
+									$option .= selected( $selected_blogs_page, $page->ID, false );
+									$option .= '>';
+									$option .= $page->post_title;
+									$option .= '</option>';
+									echo $option;
+								}
+								?>
+							</select>
+						</td>
+					</tr>
+				</table>
 			</div>
 
 			<?php submit_button(); ?>

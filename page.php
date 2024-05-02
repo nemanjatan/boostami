@@ -24,6 +24,7 @@ get_template_part( 'parts/profile' );
 		$selected_clients_page_id     = get_option( 'bostami_clients_page' );
 		$bostami_resume_selected_page = get_option( 'bostami_resume_selected_page' );
 		$bostami_portfolio_page       = get_option( 'bostami_portfolio_page' );
+		$bostami_blogs_selected_page  = get_option( 'bostami_blogs_selected_page' );
 
 		if ( $selected_page_id && (int) $selected_page_id === get_the_ID() ) {
 			get_template_part( 'parts/what-i-do' );
@@ -40,6 +41,10 @@ get_template_part( 'parts/profile' );
 
 		if ( $bostami_portfolio_page && (int) $bostami_portfolio_page === get_the_ID() ) {
 			get_template_part( 'parts/portfolio' );
+		}
+
+		if ( $bostami_blogs_selected_page && (int) $bostami_blogs_selected_page === get_the_ID() ) {
+			get_template_part( 'parts/blogs' );
 		}
 
 		get_footer();
