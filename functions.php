@@ -16,11 +16,8 @@ add_action( 'wp_enqueue_scripts', 'bostami_enqueue_styles' );
 function bostami_enqueue_scripts() {
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'slick-slider', get_template_directory_uri() . '/js/vendor/slick.js', array( 'jquery' ), null, true );
-
-	if ( is_page_template( 'page_portfolio.php' ) ) {
-		wp_enqueue_script( 'isotope', get_template_directory_uri() . '/js/vendor/isotope.pkgd.min.js', array( 'jquery' ), null, true );
-		wp_enqueue_script( 'jquery-modal', get_template_directory_uri() . '/js/vendor/jquery.modal.min.js', array( 'jquery' ), null, true );
-	}
+	wp_enqueue_script( 'isotope', get_template_directory_uri() . '/js/vendor/isotope.pkgd.min.js', array( 'jquery' ), null, true );
+	wp_enqueue_script( 'jquery-modal', get_template_directory_uri() . '/js/vendor/jquery.modal.min.js', array( 'jquery' ), null, true );
 	wp_enqueue_script( 'bostami-main-js', get_template_directory_uri() . '/js/main.js', array( 'jquery' ), null, true );
 }
 
