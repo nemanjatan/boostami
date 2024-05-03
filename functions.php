@@ -65,3 +65,7 @@ function bostami_custom_logo_setup() {
 }
 
 add_action( 'after_setup_theme', 'bostami_custom_logo_setup' );
+
+if ( function_exists( 'add_theme_support' ) ) {
+	add_theme_support( 'post-thumbnails' );
+}
