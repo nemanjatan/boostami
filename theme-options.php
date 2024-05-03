@@ -29,6 +29,8 @@ function bostami_register_settings() {
 	register_setting( 'bostami_options_group', 'bostami_resume_selected_page', 'absint' );
 	register_setting( 'bostami_options_group', 'bostami_portfolio', 'bostami_sanitize_portfolio_options' );
 	register_setting( 'bostami_options_group', 'bostami_blogs_selected_page', 'absint' );
+	register_setting( 'bostami_options_group', 'bostami_contact_selected_page', 'absint' );
+	register_setting( 'bostami_options_group', 'bostami_contact_text', 'sanitize_text_field' );
 }
 
 add_action( 'admin_init', 'bostami_register_settings' );
@@ -155,7 +157,6 @@ function bostami_theme_page() {
 	$resume_knowledge_options = get_option( 'bostami_resume_knowledge_items' );
 	$selected_page            = get_option( 'bostami_selected_page' );
 	$resume_selected_page     = get_option( 'bostami_resume_selected_page' );
-	$blogs_selected_page      = get_option( 'bostami_blogs_selected_page' );
 	$profile_image            = get_option( 'bostami_profile_image' );
 	$profile_name             = get_option( 'bostami_profile_name' );
 	$job_title                = get_option( 'bostami_job_title' );
@@ -173,6 +174,7 @@ function bostami_theme_page() {
 			<a href="#resume" class="nav-tab" data-tab="resume">Resume</a>
 			<a href="#portfolio" class="nav-tab" data-tab="portfolio">Portfolio</a>
 			<a href="#blogs" class="nav-tab" data-tab="blogs">Blogs</a>
+			<a href="#contact" class="nav-tab" data-tab="contact">Contact</a>
 		</h2>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'bostami_options_group' ); ?>
@@ -211,7 +213,7 @@ function bostami_theme_page() {
 				<table class="form-table">
 					<tr>
 						<th scope="row">
-							<label for="bostami_selected_page">On which page you want this section to be shown:</label>
+							<label for="bostami_selected_page">Select a page where you want What I Do section to be displayed:</label>
 						</th>
 						<td>
 							<select id="bostami_selected_page" name="bostami_selected_page">
@@ -278,7 +280,7 @@ function bostami_theme_page() {
 				<table class="form-table">
 					<tr>
 						<th scope="row">
-							<label for="bostami_clients_page">Select a page for Clients:</label>
+							<label for="bostami_clients_page">Select a page where you want Clients section to be displayed:</label>
 						</th>
 						<td>
 							<select id="bostami_clients_page" name="bostami_clients_page">
@@ -536,7 +538,7 @@ function bostami_theme_page() {
 				<table class="form-table">
 					<tr>
 						<th scope="row">
-							<label for="bostami_portfolio_page">Select a page for Portfolio:</label>
+							<label for="bostami_portfolio_page">Select a page where you want Portfolio section to be displayed:</label>
 						</th>
 						<td>
 							<select id="bostami_portfolio_page" name="bostami_portfolio_page">
@@ -609,7 +611,7 @@ function bostami_theme_page() {
 				<table class="form-table">
 					<tr>
 						<th scope="row">
-							<label for="bostami_blogs_selected_page">Select a page for Clients:</label>
+							<label for="bostami_blogs_selected_page">Select a page where you want Blogs section to be displayed:</label>
 						</th>
 						<td>
 							<select id="bostami_blogs_selected_page" name="bostami_blogs_selected_page">
@@ -626,6 +628,40 @@ function bostami_theme_page() {
 								}
 								?>
 							</select>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div id="contact" class="tab-content">
+				<h2>Contact</h2>
+				<table class="form-table">
+					<tr>
+						<th scope="row">
+							<label for="bostami_contact_selected_page">Select a page where you want Contact section to be displayed:</label>
+						</th>
+						<td>
+							<select id="bostami_contact_selected_page" name="bostami_contact_selected_page">
+								<?php
+								$pages                 = get_pages();
+								$selected_contact_page = get_option( 'bostami_contact_selected_page' );
+								foreach ( $pages as $page ) {
+									$option = '<option value="' . intval( $page->ID ) . '"';
+									$option .= selected( $selected_contact_page, $page->ID, false );
+									$option .= '>';
+									$option .= $page->post_title;
+									$option .= '</option>';
+									echo $option;
+								}
+								?>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="bostami_contact_text">Contact Me text (Optional):</label></th>
+						<td>
+							<input type="text" id="bostami_contact_text" name="bostami_contact_text"
+							       value="<?php echo esc_attr( get_option( 'bostami_contact_text' ) ); ?>" class="regular-text"/>
 						</td>
 					</tr>
 				</table>
