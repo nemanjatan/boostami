@@ -538,7 +538,8 @@ function bostami_theme_page() {
 				<table class="form-table">
 					<tr>
 						<th scope="row">
-							<label for="bostami_portfolio_page">Select a page where you want Portfolio section to be displayed:</label>
+							<label for="bostami_portfolio_page">Select a page where you want Portfolio section to be
+								displayed:</label>
 						</th>
 						<td>
 							<select id="bostami_portfolio_page" name="bostami_portfolio_page">
@@ -611,7 +612,8 @@ function bostami_theme_page() {
 				<table class="form-table">
 					<tr>
 						<th scope="row">
-							<label for="bostami_blogs_selected_page">Select a page where you want Blogs section to be displayed:</label>
+							<label for="bostami_blogs_selected_page">Select a page where you want Blogs section to be
+								displayed:</label>
 						</th>
 						<td>
 							<select id="bostami_blogs_selected_page" name="bostami_blogs_selected_page">
@@ -638,7 +640,8 @@ function bostami_theme_page() {
 				<table class="form-table">
 					<tr>
 						<th scope="row">
-							<label for="bostami_contact_selected_page">Select a page where you want Contact section to be displayed:</label>
+							<label for="bostami_contact_selected_page">Select a page where you want Contact section to be
+								displayed:</label>
 						</th>
 						<td>
 							<select id="bostami_contact_selected_page" name="bostami_contact_selected_page">
