@@ -17,7 +17,8 @@ get_template_part( 'parts/profile' );
 							<a href="#ex1" rel="modal:open">
 								<img
 									class="rounded-lg w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110"
-									src="<?php echo get_template_directory_uri(); ?>/images/blog_images/small/1.jpg" alt="blog image"/>
+									src="<?php echo get_template_directory_uri(); ?>/images/blog_images/small/1.jpg"
+									alt="blog image"/>
 							</a>
 						</div>
 						<div class="flex mt-4 text-tiny text-gray-lite dark:text-[#A6A6A6]">
@@ -40,7 +41,8 @@ get_template_part( 'parts/profile' );
 							<a href="#ex2" rel="modal:open">
 								<img
 									class="rounded-lg w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110"
-									src="<?php echo get_template_directory_uri(); ?>/images/blog_images/small/2.jpg" alt="blog image"/>
+									src="<?php echo get_template_directory_uri(); ?>/images/blog_images/small/2.jpg"
+									alt="blog image"/>
 							</a>
 						</div>
 						<div class="flex mt-4 text-tiny text-gray-lite dark:text-[#A6A6A6]">
@@ -62,7 +64,8 @@ get_template_part( 'parts/profile' );
 							<a href="#ex3" rel="modal:open">
 								<img
 									class="rounded-lg w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110"
-									src="<?php echo get_template_directory_uri(); ?>/images/blog_images/small/3.jpg" alt="blog image"/>
+									src="<?php echo get_template_directory_uri(); ?>/images/blog_images/small/3.jpg"
+									alt="blog image"/>
 							</a>
 						</div>
 						<div class="flex mt-4 text-tiny text-gray-lite dark:text-[#A6A6A6]">
@@ -83,7 +86,8 @@ get_template_part( 'parts/profile' );
 							<a href="#ex4" rel="modal:open">
 								<img
 									class="rounded-lg w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110"
-									src="<?php echo get_template_directory_uri(); ?>/images/blog_images/small/4.jpg" alt="blog image"/>
+									src="<?php echo get_template_directory_uri(); ?>/images/blog_images/small/4.jpg"
+									alt="blog image"/>
 							</a>
 						</div>
 						<div class="flex mt-4 text-tiny text-gray-lite dark:text-[#A6A6A6]">

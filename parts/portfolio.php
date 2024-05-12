@@ -39,7 +39,8 @@ $categories = array_unique( $categories );
 							class="pt-5 text-[14px] font-normal text-gray-lite block dark:text-[#A6A6A6]"><?= esc_html( $item['category'] ); ?></span>
 						<h2
 							class="font-medium cursor-pointer text-xl duration-300 transition hover:text-[#FA5252] dark:hover:text-[#FA5252] dark:text-white mt-2">
-							<a href="#portfolioModal<?= $index; ?>" rel="modal:open"><?= esc_html( $item['title'] ); ?></a>
+							<a href="#portfolioModal<?= $index; ?>"
+							   rel="modal:open"><?= esc_html( $item['title'] ); ?></a>
 						</h2>
 					</div>
 				</div>

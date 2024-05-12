@@ -22,7 +22,8 @@
 								<a href="<?php echo esc_url( $post_permalink ); ?>">
 									<img
 										class="rounded-lg w-full cursor-pointer transition duration-200 ease-in-out transform hover:scale-110"
-										src="<?php echo esc_url( $featured_img_url ); ?>" alt="<?php echo esc_attr( $post_title ); ?>"/>
+										src="<?php echo esc_url( $featured_img_url ); ?>"
+										alt="<?php echo esc_attr( $post_title ); ?>"/>
 								</a>
 							</div>
 							<div class="flex mt-4 text-tiny text-gray-lite dark:text-[#A6A6A6]">

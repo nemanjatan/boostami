@@ -17,7 +17,8 @@ if ( ! empty( $options ) ) :
 				?>
 				<div class="about-box bg-[#fcf4ff] dark:bg-transparent">
 					<?php if ( ! empty( $item['icon'] ) ): ?>
-						<img class="w-10 h-10 object-contain block" src="<?php echo esc_url( $item['icon'] ); ?>" alt="icon"/>
+						<img class="w-10 h-10 object-contain block" src="<?php echo esc_url( $item['icon'] ); ?>"
+						     alt="icon"/>
 					<?php endif; ?>
 					<div class="space-y-2">
 						<?php if ( ! empty( $item['title'] ) ): ?>

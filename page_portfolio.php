@@ -98,7 +98,8 @@ get_template_part( 'parts/profile' );
 						</p>
 						<div class="pr-3">
 							<img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
-							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/1.jpg" alt="portfolio image"/>
+							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/1.jpg"
+							     alt="portfolio image"/>
 						</div>
 					</div>
 					<a href="#close-modal" rel="modal:close"
@@ -178,7 +179,8 @@ get_template_part( 'parts/profile' );
 						</p>
 						<div class="pr-3">
 							<img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
-							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/2.jpg" alt="portfolio image"/>
+							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/2.jpg"
+							     alt="portfolio image"/>
 						</div>
 					</div>
 					<a href="#close-modal" rel="modal:close"
@@ -260,7 +262,8 @@ get_template_part( 'parts/profile' );
 						</p>
 						<div class="pr-3">
 							<img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
-							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/3.jpg" alt="portfolio image"/>
+							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/3.jpg"
+							     alt="portfolio image"/>
 						</div>
 					</div>
 					<a href="#close-modal" rel="modal:close"
@@ -342,7 +345,8 @@ get_template_part( 'parts/profile' );
 						</p>
 						<div class="pr-3">
 							<img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
-							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/4.jpg" alt="portfolio image"/>
+							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/4.jpg"
+							     alt="portfolio image"/>
 						</div>
 					</div>
 					<a href="#close-modal" rel="modal:close"
@@ -423,7 +427,8 @@ get_template_part( 'parts/profile' );
 						</p>
 						<div class="pr-3">
 							<img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
-							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/5.jpg" alt="portfolio image"/>
+							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/5.jpg"
+							     alt="portfolio image"/>
 						</div>
 					</div>
 					<a href="#close-modal" rel="modal:close"
@@ -508,7 +513,8 @@ get_template_part( 'parts/profile' );
 						</p>
 						<div class="pr-3">
 							<img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
-							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/6.jpg" alt="portfolio image"/>
+							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/6.jpg"
+							     alt="portfolio image"/>
 						</div>
 					</div>
 					<a href="#close-modal" rel="modal:close"
@@ -588,7 +594,8 @@ get_template_part( 'parts/profile' );
 						</p>
 						<div class="pr-3">
 							<img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
-							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/7.jpg" alt="portfolio image"/>
+							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/7.jpg"
+							     alt="portfolio image"/>
 						</div>
 					</div>
 					<a href="#close-modal" rel="modal:close"
@@ -668,7 +675,8 @@ get_template_part( 'parts/profile' );
 						</p>
 						<div class="pr-3">
 							<img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
-							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/8.jpg" alt="portfolio image"/>
+							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/8.jpg"
+							     alt="portfolio image"/>
 						</div>
 					</div>
 					<a href="#close-modal" rel="modal:close"
@@ -751,7 +759,8 @@ get_template_part( 'parts/profile' );
 						</p>
 						<div class="pr-3">
 							<img class="w-full md:h-[450px] h-auto object-cover rounded-xl mt-6"
-							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/9.jpg" alt="portfolio image"/>
+							     src="<?php echo get_template_directory_uri(); ?>/images/work_images/9.jpg"
+							     alt="portfolio image"/>
 						</div>
 					</div>
 					<a href="#close-modal" rel="modal:close"

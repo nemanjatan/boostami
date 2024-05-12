@@ -30,7 +30,8 @@ $colors = [ '#FF6464', '#9272d4', '#5185d4', '#ca56f2' ];
 					<?php foreach ( $education_items as $item ) : ?>
 						<div
 							class="bg-[#fff4f4] dark:bg-transparent py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg dark:border-[#212425] dark:border-2">
-							<span class="text-tiny text-gray-lite dark:text-[#b7b7b7]"><?php echo esc_html( $item['year'] ); ?></span>
+							<span
+								class="text-tiny text-gray-lite dark:text-[#b7b7b7]"><?php echo esc_html( $item['year'] ); ?></span>
 							<h3 class="text-xl dark:text-white"><?php echo esc_html( $item['title'] ); ?></h3>
 							<p class="dark:text-[#b7b7b7]"><?php echo esc_html( $item['description'] ); ?></p>
 						</div>
@@ -45,7 +46,8 @@ $colors = [ '#FF6464', '#9272d4', '#5185d4', '#ca56f2' ];
 					<?php foreach ( $experience_items as $item ) : ?>
 						<div
 							class="py-4 pl-5 pr-3 space-y-2 mb-6 rounded-lg bg-[#eef5fa] dark:bg-transparent dark:border-[#212425] dark:border-2">
-							<span class="text-tiny text-gray-lite dark:text-[#b7b7b7]"><?php echo esc_html( $item['year'] ); ?></span>
+							<span
+								class="text-tiny text-gray-lite dark:text-[#b7b7b7]"><?php echo esc_html( $item['year'] ); ?></span>
 							<h3 class="text-xl dark:text-white"><?php echo esc_html( $item['title'] ); ?></h3>
 							<p class="dark:text-[#b7b7b7]"><?php echo esc_html( $item['description'] ); ?></p>
 						</div>

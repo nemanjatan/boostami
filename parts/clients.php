@@ -5,7 +5,8 @@ if ( ! empty( $clients ) ): ?>
 		<?php foreach ( $clients as $client ): ?>
 			<div>
 				<a href="<?php echo esc_url( $client['url'] ); ?>">
-					<img class="overflow-hidden brand-img" src="<?php echo esc_url( $client['image'] ); ?>" alt="brand icon"/>
+					<img class="overflow-hidden brand-img" src="<?php echo esc_url( $client['image'] ); ?>"
+					     alt="brand icon"/>
 				</a>
 			</div>
 		<?php endforeach; ?>

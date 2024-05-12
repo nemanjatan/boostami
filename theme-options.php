@@ -188,7 +188,8 @@ function bostami_theme_page() {
 						<td>
 							<input type="text" id="bostami_profile_image" name="bostami_profile_image"
 							       value="<?php echo esc_attr( $profile_image ); ?>" class="regular-text">
-							<button type="button" class="button bostami_upload_button" data-input="bostami_profile_image">Upload
+							<button type="button" class="button bostami_upload_button"
+							        data-input="bostami_profile_image">Upload
 								Image
 							</button>
 							<img src="<?php echo esc_attr( $profile_image ); ?>" class="bostami_icon_preview"
@@ -213,7 +214,8 @@ function bostami_theme_page() {
 				<table class="form-table">
 					<tr>
 						<th scope="row">
-							<label for="bostami_selected_page">Select a page where you want What I Do section to be displayed:</label>
+							<label for="bostami_selected_page">Select a page where you want What I Do section to be
+								displayed:</label>
 						</th>
 						<td>
 							<select id="bostami_selected_page" name="bostami_selected_page">
@@ -280,7 +282,8 @@ function bostami_theme_page() {
 				<table class="form-table">
 					<tr>
 						<th scope="row">
-							<label for="bostami_clients_page">Select a page where you want Clients section to be displayed:</label>
+							<label for="bostami_clients_page">Select a page where you want Clients section to be
+								displayed:</label>
 						</th>
 						<td>
 							<select id="bostami_clients_page" name="bostami_clients_page">
@@ -341,28 +344,32 @@ function bostami_theme_page() {
 						<th scope="row"><label for="bostami_phone">Phone:</label></th>
 						<td>
 							<input type="text" id="bostami_phone" name="bostami_phone"
-							       value="<?php echo esc_attr( get_option( 'bostami_phone' ) ); ?>" class="regular-text">
+							       value="<?php echo esc_attr( get_option( 'bostami_phone' ) ); ?>"
+							       class="regular-text">
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="bostami_email">Email:</label></th>
 						<td>
 							<input type="email" id="bostami_email" name="bostami_email"
-							       value="<?php echo esc_attr( get_option( 'bostami_email' ) ); ?>" class="regular-text">
+							       value="<?php echo esc_attr( get_option( 'bostami_email' ) ); ?>"
+							       class="regular-text">
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="bostami_location">Location:</label></th>
 						<td>
 							<input type="text" id="bostami_location" name="bostami_location"
-							       value="<?php echo esc_attr( get_option( 'bostami_location' ) ); ?>" class="regular-text">
+							       value="<?php echo esc_attr( get_option( 'bostami_location' ) ); ?>"
+							       class="regular-text">
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="bostami_birthday">Birthday:</label></th>
 						<td>
 							<input type="text" id="bostami_birthday" name="bostami_birthday"
-							       value="<?php echo esc_attr( get_option( 'bostami_birthday' ) ); ?>" class="regular-text">
+							       value="<?php echo esc_attr( get_option( 'bostami_birthday' ) ); ?>"
+							       class="regular-text">
 						</td>
 					</tr>
 					<tr>
@@ -370,7 +377,9 @@ function bostami_theme_page() {
 						<td>
 							<input type="text" id="bostami_cv" name="bostami_cv"
 							       value="<?php echo esc_attr( get_option( 'bostami_cv' ) ); ?>" class="regular-text">
-							<button type="button" class="button bostami_upload_button" data-input="bostami_cv">Upload CV</button>
+							<button type="button" class="button bostami_upload_button" data-input="bostami_cv">Upload
+								CV
+							</button>
 						</td>
 					</tr>
 				</table>
@@ -383,28 +392,32 @@ function bostami_theme_page() {
 						<th scope="row"><label for="bostami_facebook">Facebook URL:</label></th>
 						<td>
 							<input type="text" id="bostami_facebook" name="bostami_facebook"
-							       value="<?php echo esc_attr( get_option( 'bostami_facebook' ) ); ?>" class="regular-text"/>
+							       value="<?php echo esc_attr( get_option( 'bostami_facebook' ) ); ?>"
+							       class="regular-text"/>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="bostami_twitter">Twitter URL:</label></th>
 						<td>
 							<input type="text" id="bostami_twitter" name="bostami_twitter"
-							       value="<?php echo esc_attr( get_option( 'bostami_twitter' ) ); ?>" class="regular-text"/>
+							       value="<?php echo esc_attr( get_option( 'bostami_twitter' ) ); ?>"
+							       class="regular-text"/>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="bostami_dribbble">Dribbble URL:</label></th>
 						<td>
 							<input type="text" id="bostami_dribbble" name="bostami_dribbble"
-							       value="<?php echo esc_attr( get_option( 'bostami_dribbble' ) ); ?>" class="regular-text"/>
+							       value="<?php echo esc_attr( get_option( 'bostami_dribbble' ) ); ?>"
+							       class="regular-text"/>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="bostami_linkedin">LinkedIn URL:</label></th>
 						<td>
 							<input type="text" id="bostami_linkedin" name="bostami_linkedin"
-							       value="<?php echo esc_attr( get_option( 'bostami_linkedin' ) ); ?>" class="regular-text"/>
+							       value="<?php echo esc_attr( get_option( 'bostami_linkedin' ) ); ?>"
+							       class="regular-text"/>
 						</td>
 					</tr>
 				</table>
@@ -412,7 +425,8 @@ function bostami_theme_page() {
 
 			<div id="resume" class="tab-content">
 				<div class="resume-tabs">
-					<a href="#" class="resume-tab-link active" data-tab="resume-education-experience">Education & Experience</a>
+					<a href="#" class="resume-tab-link active" data-tab="resume-education-experience">Education &
+						Experience</a>
 					<a href="#" class="resume-tab-link" data-tab="resume-skills">Working Skills</a>
 					<a href="#" class="resume-tab-link" data-tab="resume-knowledge">knowledge</a>
 				</div>
@@ -421,7 +435,8 @@ function bostami_theme_page() {
 					<table class="form-table">
 						<tr>
 							<th scope="row">
-								<label for="bostami_resume_selected_page">On which page you want this section to be shown:</label>
+								<label for="bostami_resume_selected_page">On which page you want this section to be
+									shown:</label>
 							</th>
 							<td>
 								<select id="bostami_resume_selected_page" name="bostami_resume_selected_page">
@@ -451,10 +466,12 @@ function bostami_theme_page() {
 									<p>
 										<label>Type:</label>
 										<select name="bostami_resume_items[<?php echo $index; ?>][type]">
-											<option value="education" <?php echo( $item['type'] == 'education' ? 'selected' : '' ); ?>>
+											<option
+												value="education" <?php echo( $item['type'] == 'education' ? 'selected' : '' ); ?>>
 												Education
 											</option>
-											<option value="experience" <?php echo( $item['type'] == 'experience' ? 'selected' : '' ); ?>>
+											<option
+												value="experience" <?php echo( $item['type'] == 'experience' ? 'selected' : '' ); ?>>
 												Experience
 											</option>
 										</select>
@@ -474,7 +491,9 @@ function bostami_theme_page() {
 										<textarea
 											name="bostami_resume_items[<?php echo $index; ?>][description]"><?php echo esc_textarea( $item['description'] ); ?></textarea>
 									</p>
-									<button type="button" class="button bostami_resume_remove_icon_button">Remove Element</button>
+									<button type="button" class="button bostami_resume_remove_icon_button">Remove
+										Element
+									</button>
 								</div>
 								<?php
 							}
@@ -492,22 +511,28 @@ function bostami_theme_page() {
 								<div class="bostami_resume_skills_item">
 									<p>
 										<label>Skill title:</label>
-										<input type="text" name="bostami_resume_skills_items[<?php echo $index; ?>][title]"
+										<input type="text"
+										       name="bostami_resume_skills_items[<?php echo $index; ?>][title]"
 										       value="<?php echo esc_attr( $item['title'] ); ?>"/>
 									</p>
 									<p>
 										<label>Percentage:</label>
-										<input type="number" name="bostami_resume_skills_items[<?php echo $index; ?>][percentage]"
-										       value="<?php echo esc_attr( $item['percentage'] ); ?>" min="0" max="100"/>
+										<input type="number"
+										       name="bostami_resume_skills_items[<?php echo $index; ?>][percentage]"
+										       value="<?php echo esc_attr( $item['percentage'] ); ?>" min="0"
+										       max="100"/>
 									</p>
-									<button type="button" class="button bostami_resume_skills_remove_icon_button">Remove Element</button>
+									<button type="button" class="button bostami_resume_skills_remove_icon_button">Remove
+										Element
+									</button>
 								</div>
 								<?php
 							}
 						}
 						?>
 					</div>
-					<button type="button" id="bostami_add_new_resume_skills_item" class="button">Add New Element</button>
+					<button type="button" id="bostami_add_new_resume_skills_item" class="button">Add New Element
+					</button>
 				</div>
 				<div class="resume-tab-content" id="resume-knowledge">
 					<div id="bostami_resume_knowledge_container">
@@ -518,10 +543,12 @@ function bostami_theme_page() {
 								<div class="bostami_resume_knowledge_item">
 									<p>
 										<label>Knowledge title:</label>
-										<input type="text" name="bostami_resume_knowledge_items[<?php echo $index; ?>][title]"
+										<input type="text"
+										       name="bostami_resume_knowledge_items[<?php echo $index; ?>][title]"
 										       value="<?php echo esc_attr( $item['title'] ); ?>"/>
 									</p>
-									<button type="button" class="button bostami_resume_knowledge_remove_icon_button">Remove Element
+									<button type="button" class="button bostami_resume_knowledge_remove_icon_button">
+										Remove Element
 									</button>
 								</div>
 								<?php
@@ -529,7 +556,8 @@ function bostami_theme_page() {
 						}
 						?>
 					</div>
-					<button type="button" id="bostami_add_new_resume_knowledge_item" class="button">Add New Element</button>
+					<button type="button" id="bostami_add_new_resume_knowledge_item" class="button">Add New Element
+					</button>
 				</div>
 			</div>
 
@@ -597,7 +625,8 @@ function bostami_theme_page() {
 									       name="bostami_portfolio[<?php echo $index; ?>][category]"
 									       value="<?php echo esc_attr( $item['category'] ); ?>"/>
 								</p>
-								<button type="button" class="button bostami_remove_portfolio_button">Remove Portfolio</button>
+								<button type="button" class="button bostami_remove_portfolio_button">Remove Portfolio
+								</button>
 							</div>
 							<?php
 						}
@@ -640,7 +669,8 @@ function bostami_theme_page() {
 				<table class="form-table">
 					<tr>
 						<th scope="row">
-							<label for="bostami_contact_selected_page">Select a page where you want Contact section to be
+							<label for="bostami_contact_selected_page">Select a page where you want Contact section to
+								be
 								displayed:</label>
 						</th>
 						<td>
@@ -664,7 +694,8 @@ function bostami_theme_page() {
 						<th scope="row"><label for="bostami_contact_text">Contact Me text (Optional):</label></th>
 						<td>
 							<input type="text" id="bostami_contact_text" name="bostami_contact_text"
-							       value="<?php echo esc_attr( get_option( 'bostami_contact_text' ) ); ?>" class="regular-text"/>
+							       value="<?php echo esc_attr( get_option( 'bostami_contact_text' ) ); ?>"
+							       class="regular-text"/>
 						</td>
 					</tr>
 				</table>
@@ -677,9 +708,11 @@ function bostami_theme_page() {
 		<div class="bostami_what_i_do_item">
 			<p>
 				<label for="bostami_icon_{{index}}">Icon:</label>
-				<input type="hidden" id="bostami_icon_{{index}}" name="bostami_what_i_do_items[{{index}}][icon]" value=""/>
+				<input type="hidden" id="bostami_icon_{{index}}" name="bostami_what_i_do_items[{{index}}][icon]"
+				       value=""/>
 				<!-- Notice the addition of the data-input attribute here -->
-				<button type="button" class="button bostami_upload_button" data-input="bostami_icon_{{index}}">Upload Icon
+				<button type="button" class="button bostami_upload_button" data-input="bostami_icon_{{index}}">Upload
+					Icon
 				</button>
 				<img src="" class="bostami_icon_preview" style="max-width: 100px; max-height: 100px;"/>
 			</p>
@@ -700,7 +733,8 @@ function bostami_theme_page() {
 				<label for="bostami_client_image_{{index}}">Client Image:</label>
 				<input type="text" id="bostami_client_image_{{index}}" name="bostami_clients[{{index}}][image]" value=""
 				       class="regular-text"/>
-				<button type="button" class="button bostami_upload_button" data-input="bostami_client_image_{{index}}">Upload
+				<button type="button" class="button bostami_upload_button" data-input="bostami_client_image_{{index}}">
+					Upload
 					Image
 				</button>
 			</p>
@@ -748,7 +782,8 @@ function bostami_theme_page() {
 			</p>
 			<p>
 				<label>Percentage:</label>
-				<input type="number" name="bostami_resume_skills_items[{{index}}][percentage]" value="" min="0" max="100"/>
+				<input type="number" name="bostami_resume_skills_items[{{index}}][percentage]" value="" min="0"
+				       max="100"/>
 			</p>
 			<button type="button" class="button bostami_resume_skills_remove_icon_button">Remove Element</button>
 		</div>
@@ -766,9 +801,11 @@ function bostami_theme_page() {
 		<div class="bostami_portfolio_item">
 			<p>
 				<label for="bostami_portfolio_image_{{index}}">Image:</label>
-				<input type="text" id="bostami_portfolio_image_{{index}}" name="bostami_portfolio[{{index}}][image]" value=""
+				<input type="text" id="bostami_portfolio_image_{{index}}" name="bostami_portfolio[{{index}}][image]"
+				       value=""
 				       class="regular-text"/>
-				<button type="button" class="button bostami_upload_button" data-input="bostami_portfolio_image_{{index}}">Upload
+				<button type="button" class="button bostami_upload_button"
+				        data-input="bostami_portfolio_image_{{index}}">Upload
 					Image
 				</button>
 			</p>
